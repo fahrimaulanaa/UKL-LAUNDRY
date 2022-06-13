@@ -6,6 +6,7 @@ class halo implements Hello {
     Petugas pt = new Petugas();
     public void hello() {
         System.out.println("--Selamat Datang Di Perpustakaan-- ");
+        System.out.println("");
         System.out.println("Petugas yang sedang berjaga-jaga adalah: ");
         Petugas.Karyawan();
     }
@@ -46,6 +47,7 @@ public class Main{
             case 2:
             sw.getSiswa();
             System.out.println("");
+            pj.tampilBuku();
             pj.kembalikanbuku();
                 break;
 

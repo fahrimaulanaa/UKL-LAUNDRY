@@ -45,21 +45,17 @@ public class Siswa {
     }
 
     public void getSiswa(){
-        System.out.println("Masukkan nama anda: ");
-        String nama = input.nextLine();
-        //Find index of nama
-        int index = this.namaSiswa.indexOf(nama);
-        if (index == -1){
-            System.out.println("Nama tidak ditemukan");
-        } else {
-            System.out.println("Nama anda adalah: " + this.namaSiswa.get(index));
-            System.out.println("Alamat anda adalah: " + this.alamatSiswa.get(index));
-            System.out.println("Telefon anda adalah: " + this.telefonSiswa.get(index));
-            System.out.println("Id anda adalah: " + this.idSiswa.get(index));
-            if (this.statusSiswa.get(index)){
-                System.out.println("Status anda adalah: Aktif");
-            } else {
-                System.out.println("Status anda adalah: Tidak Aktif");
+        System.out.print("Masukkan ID anda: ");
+        int id = input.nextInt();
+        //Search ID
+        for (int i = 0; i < idSiswa.size(); i++) {
+            if (id == idSiswa.get(i)) {
+                System.out.println("Nama: " + namaSiswa.get(i));
+                System.out.println("Alamat: " + alamatSiswa.get(i));
+                System.out.println("Telepon: " + telefonSiswa.get(i));
+            }else{
+                System.out.println("ID tidak ditemukan");
+                break;
             }
         }
     }

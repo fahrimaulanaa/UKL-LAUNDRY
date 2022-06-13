@@ -1,19 +1,17 @@
 package Rabu;
 
 import java.util.*;
-import java.io.*;
-import Rabu.Buku;
 
 public class Peminjaman implements Buku {
     static Scanner input = new Scanner(System.in);
 
     //Declare ArrayList
-    ArrayList<String>namaBuku = new ArrayList<String>();
-    ArrayList<Integer>nomor = new ArrayList<Integer>();
-    ArrayList<Integer>idBuku = new ArrayList<Integer>();
-    ArrayList<Integer>Banyak = new ArrayList<Integer>();
-    ArrayList<Integer>Stok = new ArrayList<Integer>();
-    ArrayList<Integer>Harga = new ArrayList<Integer>();
+    private ArrayList<String>namaBuku = new ArrayList<String>();
+    private ArrayList<Integer>nomor = new ArrayList<Integer>();
+    private ArrayList<Integer>idBuku = new ArrayList<Integer>();
+    private ArrayList<Integer>Banyak = new ArrayList<Integer>();
+    private ArrayList<Integer>Stok = new ArrayList<Integer>();
+    private ArrayList<Integer>Harga = new ArrayList<Integer>();
 
     //Constructor
     public Peminjaman() {
@@ -108,30 +106,26 @@ public class Peminjaman implements Buku {
         int id = input.nextInt();
         System.out.println("Berapa banyak buku yang ingin anda beli: ");
         int banyak = input.nextInt();
-        do {
-            if (banyak > Stok.get(id)) {
-                System.out.println("Stok buku tidak mencukupi");
-                break;
-            }
-        } while (banyak > Stok.get(id));              
+        System.out.println("");
+        System.out.println("Buku yang dibeli: " + namaBuku.get(id));
+        System.out.println("Stok buku saat ini: " + Stok.get(id));
+        System.out.println("Harga buku: " + Harga.get(id));
+        System.out.println("Total harga: " + (Harga.get(id) * banyak));
+        System.out.println("");
         System.out.println("Yakin ingin membeli buku ini? (Y/N)");
         String jawab = input.next();
-        if (jawab.equalsIgnoreCase("Y") && banyak <= Stok.get(id))  {
-            int total = Harga.get(id) * banyak;
-            System.out.println("Buku yang  akan dibeli: " + namaBuku.get(id));
-            System.out.println("Stok buku saat ini: " + Stok.get(id));
-            System.out.println("Harga buku: " + Harga.get(id));
-            System.out.println("");
-            System.out.println("Total harga: " + total);
-            System.out.println("Silahkan membayar sejumlah "+total);
+        if (jawab.equalsIgnoreCase("Y") && banyak <= Stok.get(id)) {
+            System.out.print("Masukkan uang anda: ");
             int uang = input.nextInt();
-            if(uang <= total){
-                System.out.println("Uang anda cukup");
-                System.out.println("BUKU BERHASIL DIBAYAR");
-                System.out.println("Stok buku setelah dibeli: " + (Stok.get(id) - banyak));
-            }else{
-                System.out.println("Uang anda tidak cukup");
+            if (uang >= (Harga.get(id) * banyak)) {
+                System.out.println("BUKU BERHASIL DIBELI");
+            }else if(uang < (Harga.get(id) * banyak)){
+                System.out.println("UANG ANDA TIDAK CUKUP");
             }
+        }else if(banyak > Stok.get(id)){
+            System.out.println("BUKU TIDAK DIBELI KARENA STOK TIDAK MENCUKUPI");
+        }else{
+            System.out.println("ANDA PHP!");
         }
     }
     @Override
